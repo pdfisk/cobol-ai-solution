@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="blazor/BlazorLib/BlazorLib.csproj" />
+  <Project Path="CobolStudioDesktop/CobolStudioDesktop.csproj" />
+</Solution>

@@ -1,0 +1,35 @@
+﻿@page "/"
+
+<div class="container mt-5">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">COBOL Studio</h1>
+            <p class="col-md-8 fs-4">
+                Bridge the gap between legacy systems and modern technology. 
+                This application allows you to manage, view, and analyze COBOL programs alongside Python scripts, 
+                facilitating modernization and maintenance tasks.
+            </p>
+            <div class="mt-4">
+                <a class="btn btn-primary btn-lg" href="cobol_list" role="button">Manage COBOL</a>
+                <a class="btn btn-success btn-lg ms-2" href="python_list" role="button">Manage Python</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+            <div class="h-100 p-5 text-white bg-dark rounded-3">
+                <h2>Legacy COBOL</h2>
+                <p>Access your repository of COBOL programs. Perform static analysis, view source code, and track legacy logic flow.</p>
+                <a href="cobol_list" class="btn btn-outline-light" type="button">Go to COBOL</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>Modern Python</h2>
+                <p>Integrate modern scripting capabilities. Run data processing tasks, automation scripts, and extend functionality using Python.</p>
+                <a href="python_list" class="btn btn-outline-secondary" type="button">Go to Python</a>
+            </div>
+        </div>
+    </div>
+</div>

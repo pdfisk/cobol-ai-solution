@@ -1,0 +1,52 @@
+﻿@page "/cobol_list"
+@inject NavigationManager Navigation
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5>COBOL Programs</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Select a Program:</h6>
+                    <div class="list-group mb-3" style="max-height: 200px; overflow-y: auto; border: 1px solid #ddd;">
+                        @foreach (var file in CobolFiles)
+                        {
+                            <button type="button"
+                                    class="list-group-item list-group-item-action"
+                                    @onclick="() => OpenFile(file)">
+                                @file.FileName
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    public class ScriptFile
+    {
+        public string FileName { get; set; } = "";
+        public string Content { get; set; } = "";
+    }
+
+    private List<ScriptFile> CobolFiles = new();
+
+    protected override void OnInitialized()
+    {
+        CobolFiles = new List<ScriptFile>
+        {
+            new ScriptFile { FileName = "PAYROLL.CBL", Content = "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. PAYROLL.\n       PROCEDURE DIVISION.\n           DISPLAY 'Processing Payroll'." },
+            new ScriptFile { FileName = "REPORT.CBL", Content = "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. REPORT-GEN.\n       PROCEDURE DIVISION.\n           DISPLAY 'Generating Report'." },
+            new ScriptFile { FileName = "BILLING.CBL", Content = "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. BILLING.\n       PROCEDURE DIVISION.\n           DISPLAY ' invoicing clients...'." }
+        };
+    }
+
+    private void OpenFile(ScriptFile file)
+    {
+        Navigation.NavigateTo($"/cobol_content/{file.FileName}");
+    }
+}

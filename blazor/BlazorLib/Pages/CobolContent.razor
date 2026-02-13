@@ -1,0 +1,83 @@
+@page "/cobol_content/{FileName}"
+@inject NavigationManager Navigation
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5>COBOL Program: @FileName</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Program Content:</h6>
+                    <textarea class="form-control mb-3"
+                              rows="10"
+                              value="@CobolContentDisplay"
+                              readonly></textarea>
+
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-warning" @onclick="AnalyzeCobol">Analyze Code</button>
+                        <button class="btn btn-secondary" @onclick="GoBack">Back to List</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <strong>System Log:</strong> @SystemStatus
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string FileName { get; set; } = "";
+
+    private string CobolContentDisplay = "";
+    private string SystemStatus = "Ready.";
+
+    public class ScriptFile
+    {
+        public string FileName { get; set; } = "";
+        public string Content { get; set; } = "";
+    }
+
+    private List<ScriptFile> CobolFiles = new();
+
+    protected override void OnInitialized()
+    {
+        CobolFiles = new List<ScriptFile>
+        {
+            new ScriptFile { FileName = "PAYROLL.CBL", Content = "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. PAYROLL.\n       PROCEDURE DIVISION.\n           DISPLAY 'Processing Payroll'." },
+            new ScriptFile { FileName = "REPORT.CBL", Content = "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. REPORT-GEN.\n       PROCEDURE DIVISION.\n           DISPLAY 'Generating Report'." },
+            new ScriptFile { FileName = "BILLING.CBL", Content = "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. BILLING.\n       PROCEDURE DIVISION.\n           DISPLAY ' invoicing clients...'." }
+        };
+
+        var file = CobolFiles.FirstOrDefault(f => f.FileName == FileName);
+        if (file != null)
+        {
+            CobolContentDisplay = file.Content;
+            SystemStatus = $"Loaded {FileName}";
+        }
+        else
+        {
+            SystemStatus = "File not found.";
+            CobolContentDisplay = "File not found.";
+        }
+    }
+
+    private void AnalyzeCobol()
+    {
+        // Simulation of a static analysis tool
+        SystemStatus = "Analyzing COBOL legacy code... No syntax errors found. (Analysis simulated)";
+    }
+
+    private void GoBack()
+    {
+        Navigation.NavigateTo("/cobol_list");
+    }
+}
