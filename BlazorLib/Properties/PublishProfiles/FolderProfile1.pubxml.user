@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\peter\source\repos\development\ai\BlazorLib\bin\Debug\net10.0\browser-wasm\publish\</_PublishTargetUrl>
+    <History>True|2026-03-05T17:05:41.3701122Z||;False|2026-03-05T12:02:45.5931875-05:00||;True|2026-03-05T10:54:56.1185365-05:00||;False|2026-03-05T10:52:02.6995633-05:00||;False|2026-03-05T10:50:03.1716582-05:00||;True|2026-03-05T10:40:31.8359672-05:00||;True|2026-03-05T10:23:34.7923651-05:00||;True|2026-03-05T10:09:27.4600214-05:00||;True|2026-03-03T18:22:49.9197736-05:00||;True|2026-03-03T18:20:25.3161997-05:00||;True|2026-03-03T17:37:36.8403169-05:00||;True|2026-03-03T17:26:02.2385183-05:00||;False|2026-03-03T17:25:06.4875737-05:00||;True|2026-03-03T16:20:56.8758042-05:00||;True|2026-03-03T12:05:12.6040454-05:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

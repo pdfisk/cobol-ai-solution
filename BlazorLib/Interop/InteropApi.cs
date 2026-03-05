@@ -1,0 +1,65 @@
+namespace BlazorLib.Interop
+{
+    public interface IInteropApi
+    {
+        List<ScriptFile> CobolFiles { get; }
+        List<ScriptFile> PythonFiles { get; }
+
+        List<ScriptFile> GetCobolFiles();
+        List<ScriptFile> GetPythonFiles();
+
+        void LoadCobolFiles();
+        void LoadPythonFiles();
+    }
+
+    public class InteropApi : IInteropApi
+    {
+        private bool _cobolInitialized;
+        private bool _pythonInitialized;
+
+        public List<ScriptFile> CobolFiles { get; } = new();
+        public List<ScriptFile> PythonFiles { get; } = new();
+
+        public List<ScriptFile> GetCobolFiles()
+        {
+            LoadCobolFiles();
+            return CobolFiles;
+        }
+
+        public List<ScriptFile> GetPythonFiles()
+        {
+            LoadPythonFiles();
+            return PythonFiles;
+        }
+
+        public void LoadCobolFiles()
+        {
+            if (_cobolInitialized)
+            {
+                return;
+            }
+
+            _cobolInitialized = true;
+            CobolFiles.Clear();
+            CobolFiles.Add(new ScriptFile { FileName = "program-1.cobol", Content = "IDENTIFICATION DIVISION.\nPROGRAM-ID. PROGRAM-1." });
+            CobolFiles.Add(new ScriptFile { FileName = "program-2.cobol", Content = "IDENTIFICATION DIVISION.\nPROGRAM-ID. PROGRAM-2." });
+            CobolFiles.Add(new ScriptFile { FileName = "program-3.cobol", Content = "IDENTIFICATION DIVISION.\nPROGRAM-ID. PROGRAM-3." });
+        }
+
+        public void LoadPythonFiles()
+        {
+            if (_pythonInitialized)
+            {
+                return;
+            }
+
+            _pythonInitialized = true;
+            PythonFiles.Clear();
+            PythonFiles.Add(new ScriptFile { FileName = "data_process.py", Content = "import pandas as pd\nprint('Processing data...')" });
+            PythonFiles.Add(new ScriptFile { FileName = "scraper.py", Content = "import requests\nresponse = requests.get('url')\nprint(response.text)" });
+            PythonFiles.Add(new ScriptFile { FileName = "utils.py", Content = "def add(a, b):\n    return a + b" });
+            PythonFiles.Add(new ScriptFile { FileName = "main.py", Content = "if __name__ == '__main__':\n    print('Hello World')" });
+            PythonFiles.Add(new ScriptFile { FileName = "config.py", Content = "DB_HOST = 'localhost'\nDB_PORT = 5432" });
+        }
+    }
+}

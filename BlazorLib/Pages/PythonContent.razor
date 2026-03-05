@@ -1,0 +1,72 @@
+@page "/python_content/{FileName}"
+@using BlazorLib.Interop
+@inject NavigationManager Navigation
+@inject IInteropApi InteropApi
+
+<div class="container mt-4">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h5>Python Script: @FileName</h5>
+				</div>
+				<div class="card-body">
+					<h6>Script Content:</h6>
+					<textarea class="form-control mb-3"
+							  rows="10"
+							  value="@PythonContentDisplay"
+							  readonly></textarea>
+
+					<div class="d-flex justify-content-between">
+						<button class="btn btn-success" @onclick="RunPython">Run Script</button>
+						<button class="btn btn-secondary" @onclick="GoBack">Back to List</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row mt-4">
+		<div class="col-12">
+			<div class="alert alert-info">
+				<strong>System Log:</strong> @SystemStatus
+			</div>
+		</div>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public string FileName { get; set; } = "";
+
+	private string PythonContentDisplay = "";
+	private string SystemStatus = "Ready.";
+
+
+	protected override void OnInitialized()
+	{
+		InteropApi.LoadPythonFiles();
+
+		var file = InteropApi.PythonFiles.FirstOrDefault(f => f.FileName == FileName);
+		if (file != null)
+		{
+			PythonContentDisplay = file.Content;
+			SystemStatus = $"Loaded {FileName}";
+		}
+		else
+		{
+			SystemStatus = "File not found.";
+			PythonContentDisplay = "File not found.";
+		}
+	}
+
+	private void RunPython()
+	{
+		SystemStatus = "Executing Python script... Done. (Execution simulated)";
+	}
+
+	private void GoBack()
+	{
+		Navigation.NavigateTo("/python_list");
+	}
+}

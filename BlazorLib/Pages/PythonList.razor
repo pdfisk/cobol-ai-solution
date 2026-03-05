@@ -1,0 +1,66 @@
+@page "/python_list"
+@using BlazorLib.Interop
+@inject NavigationManager Navigation
+@inject IInteropApi InteropApi
+
+<div class="container mt-4">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h5>Python Scripts</h5>
+				</div>
+				<div class="card-body">
+					<h6>Select a Script:</h6>
+					<div class="list-group mb-3" style="max-height: 200px; overflow-y: auto; border: 1px solid #ddd;">
+						@foreach (var file in InteropApi.PythonFiles)
+						{
+							<button type="button"
+									class="list-group-item list-group-item-action"
+									@onclick="() => OpenFile(file)">
+								@file.FileName
+							</button>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row mt-4">
+		<div class="col-12">
+			<div class="alert alert-info">
+				<strong>System Log:</strong> @SystemStatus
+			</div>
+		</div>
+	</div>
+</div>
+
+@code {
+	// ==========================================
+	// STATE VARIABLES
+	// ==========================================
+
+
+	// Status message to give feedback to the user
+	private string SystemStatus = "Ready.";
+
+	// ==========================================
+	// INITIALIZATION
+	// ==========================================
+
+	protected override void OnInitialized()
+	{
+		InteropApi.LoadPythonFiles();
+	}
+
+	// ==========================================
+	// PYTHON LOGIC
+	// ==========================================
+
+	private void OpenFile(ScriptFile file)
+	{
+		Navigation.NavigateTo($"/python_content/{file.FileName}");
+	}
+}

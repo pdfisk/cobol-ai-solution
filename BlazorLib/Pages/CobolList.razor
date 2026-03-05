@@ -1,0 +1,43 @@
+@page "/cobol_list"
+@using BlazorLib.Interop
+@using static BlazorLib.Pages.CobolContent
+@inject NavigationManager Navigation
+@inject IInteropApi InteropApi
+
+<div class="container mt-4">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header bg-success text-white">
+					<h5>COBOL Programs</h5>
+				</div>
+				<div class="card-body">
+					<h6>Select a Program:</h6>
+					<div class="list-group mb-3" style="max-height: 200px; overflow-y: auto; border: 1px solid #ddd;">
+						@foreach (var file in InteropApi.CobolFiles)
+						{
+							<button type="button"
+									class="list-group-item list-group-item-action"
+									@onclick="() => OpenFile(file)">
+								@file.FileName
+							</button>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@code {
+
+	protected override void OnInitialized()
+	{
+		InteropApi.LoadCobolFiles();
+	}
+
+	private void OpenFile(ScriptFile file)
+	{
+		Navigation.NavigateTo($"/cobol_content/{file.FileName}");
+	}
+}
