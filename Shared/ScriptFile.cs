@@ -1,4 +1,4 @@
-﻿namespace BlazorLib.Interop
+namespace BlazorLib.Interop
 {
     public class ScriptFile
     {
