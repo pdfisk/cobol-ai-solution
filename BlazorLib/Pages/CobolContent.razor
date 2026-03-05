@@ -46,7 +46,7 @@
     {
 		InteropApi.LoadCobolFiles();
 
-        var file =  InteropApi.CobolFiles.FirstOrDefault(f => f.FileName == FileName);
+        var file =  InteropApi.GetCobolFiles().FirstOrDefault(f => f.FileName == FileName);
         if (file != null)
         {
             CobolContentDisplay = file.Content;

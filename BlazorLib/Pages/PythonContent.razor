@@ -47,7 +47,7 @@
 	{
 		InteropApi.LoadPythonFiles();
 
-		var file = InteropApi.PythonFiles.FirstOrDefault(f => f.FileName == FileName);
+		var file = InteropApi.GetPythonFiles().FirstOrDefault(f => f.FileName == FileName);
 		if (file != null)
 		{
 			PythonContentDisplay = file.Content;

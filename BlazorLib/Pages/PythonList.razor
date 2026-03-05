@@ -13,7 +13,7 @@
 				<div class="card-body">
 					<h6>Select a Script:</h6>
 					<div class="list-group mb-3" style="max-height: 200px; overflow-y: auto; border: 1px solid #ddd;">
-						@foreach (var file in InteropApi.PythonFiles)
+						@foreach (var file in InteropApi.GetPythonFiles())
 						{
 							<button type="button"
 									class="list-group-item list-group-item-action"
@@ -53,6 +53,7 @@
 	protected override void OnInitialized()
 	{
 		InteropApi.LoadPythonFiles();
+		StateHasChanged();
 	}
 
 	// ==========================================

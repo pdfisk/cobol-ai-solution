@@ -2,9 +2,6 @@ namespace BlazorLib.Interop
 {
     public interface IInteropApi
     {
-        List<ScriptFile> CobolFiles { get; }
-        List<ScriptFile> PythonFiles { get; }
-
         List<ScriptFile> GetCobolFiles();
         List<ScriptFile> GetPythonFiles();
 
@@ -17,8 +14,8 @@ namespace BlazorLib.Interop
         private bool _cobolInitialized;
         private bool _pythonInitialized;
 
-        public List<ScriptFile> CobolFiles { get; } = new();
-        public List<ScriptFile> PythonFiles { get; } = new();
+        List<ScriptFile> CobolFiles { get; } = new();
+        List<ScriptFile> PythonFiles { get; } = new();
 
         public List<ScriptFile> GetCobolFiles()
         {
