@@ -1,12 +1,13 @@
 using BlazorLib.Interop;
 using BlazorLib.Server;
+using Shared;
 
-var server = new SimpleHttpServer("http://localhost:8080/", new InteropApi());
+var server = new SimpleHttpServer(Constants.SimpleHttpServerUrl, new InteropApi());
 server.Start();
 
 using (server)
 {
-    Console.WriteLine("Server running at http://localhost:8080/. Press Ctrl+C to stop.");
+    Console.WriteLine($"Server running at {Constants.SimpleHttpServerUrl}. Press Ctrl+C to stop.");
     var exitEvent = new ManualResetEventSlim(false);
     Console.CancelKeyPress += (_, e) =>
     {
