@@ -1,3 +1,5 @@
+using Npgsql;
+
 namespace BlazorLib.Interop
 {
     public interface IInteropApi
@@ -14,6 +16,7 @@ namespace BlazorLib.Interop
 
     public class InteropApi : IInteropApi
     {
+        private const string ConnectionString = "Host=localhost;Port=5432;Database=cobol_studio;Username=admin;Password=chichi";
         private bool _cobolInitialized;
         private bool _pythonInitialized;
 
@@ -42,17 +45,25 @@ namespace BlazorLib.Interop
             _cobolInitialized = true;
             CobolFiles.Clear();
 
-            var cobolPath = Path.Combine(Directory.GetCurrentDirectory(), "data", "cobol");
-            if (!Directory.Exists(cobolPath))
+            try
             {
-                return;
+                using var conn = new NpgsqlConnection(ConnectionString);
+                conn.Open();
+                using var cmd = new NpgsqlCommand("SELECT file_name, content FROM cobol_source_files ORDER BY file_name", conn);
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    CobolFiles.Add(new ScriptFile
+                    {
+                        FileName = reader.GetString(0),
+                        Content = reader.GetString(1)
+                    });
+                }
             }
-
-            foreach (var filePath in Directory.EnumerateFiles(cobolPath, "*.cobol"))
+            catch
             {
-                var fileName = Path.GetFileName(filePath);
-                var content = File.ReadAllText(filePath);
-                CobolFiles.Add(new ScriptFile { FileName = fileName, Content = content });
+                _cobolInitialized = false;
+                throw;
             }
         }
 
@@ -65,11 +76,27 @@ namespace BlazorLib.Interop
 
             _pythonInitialized = true;
             PythonFiles.Clear();
-            PythonFiles.Add(new ScriptFile { FileName = "data_process.py", Content = "import pandas as pd\nprint('Processing data...')" });
-            PythonFiles.Add(new ScriptFile { FileName = "scraper.py", Content = "import requests\nresponse = requests.get('url')\nprint(response.text)" });
-            PythonFiles.Add(new ScriptFile { FileName = "utils.py", Content = "def add(a, b):\n    return a + b" });
-            PythonFiles.Add(new ScriptFile { FileName = "main.py", Content = "if __name__ == '__main__':\n    print('Hello World')" });
-            PythonFiles.Add(new ScriptFile { FileName = "config.py", Content = "DB_HOST = 'localhost'\nDB_PORT = 5432" });
+
+            try
+            {
+                using var conn = new NpgsqlConnection(ConnectionString);
+                conn.Open();
+                using var cmd = new NpgsqlCommand("SELECT file_name, content FROM python_source_files ORDER BY file_name", conn);
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    PythonFiles.Add(new ScriptFile
+                    {
+                        FileName = reader.GetString(0),
+                        Content = reader.GetString(1)
+                    });
+                }
+            }
+            catch
+            {
+                _pythonInitialized = false;
+                throw;
+            }
         }
 
         public Task LoadCobolFilesAsync()
