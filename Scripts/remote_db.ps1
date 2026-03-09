@@ -1,0 +1,5 @@
+$env:PGPASSWORD="p6e59ccd597838ffebe1fd36ad6eeadbd5451c2e0a99b8f4f08d25265fb20d04c"
+psql -h ca932070ke6bv1.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com `
+     -p 5432 `
+     -U u8if3a0emvt160 `
+     -d d40dlqsc2cuu2l
