@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace UtilLib
+namespace CobolAiLib
 {
     public class Base64Util
     {

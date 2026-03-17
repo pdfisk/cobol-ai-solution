@@ -1,4 +1,4 @@
-﻿namespace UtilLib.interfaces
+﻿namespace CobolAiLib.interfaces
 {
     public interface IRunScript
     {

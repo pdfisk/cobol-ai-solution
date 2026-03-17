@@ -1,4 +1,4 @@
-﻿namespace UtilLib
+﻿namespace CobolAiLib
 {
     public class DataManager
     {

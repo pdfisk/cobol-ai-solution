@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
-using UtilLib.constants;
-using UtilLib.interfaces;
+using CobolAiLib.constants;
+using CobolAiLib.interfaces;
 
-namespace UtilLib
+namespace CobolAiLib
 {
     public class InteropUtil
     {

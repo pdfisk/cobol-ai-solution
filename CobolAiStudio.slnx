@@ -1,5 +1,5 @@
 <Solution>
   <Project Path="BlazorLib/BlazorLib.csproj" />
+  <Project Path="CobolAiLib/CobolAiLib.csproj" />
   <Project Path="CobolAiServer/CobolAiServer.csproj" />
-  <Project Path="UtilLib/UtilLib.csproj" />
 </Solution>

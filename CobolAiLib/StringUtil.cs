@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace UtilLib
+namespace CobolAiLib
 {
     public static class StringUtil
     {
