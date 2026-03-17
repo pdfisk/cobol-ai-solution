@@ -1,5 +1,5 @@
-using BlazorLib;
-using BlazorLib.Interop;
+using CobolAiGui;
+using CobolAiGui.Interop;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 

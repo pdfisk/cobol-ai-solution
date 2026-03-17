@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorLib.Interop
+namespace CobolAiGui.Interop
 {
     public static class DependencyInjectionExtensions
     {
@@ -8,7 +8,7 @@ namespace BlazorLib.Interop
         private const string ServerUrlProduction = "https://cobol-ai-studio-d0c7533a4035.herokuapp.com/";
 
         /// <summary>
-        /// Registers BlazorLib interop services.
+        /// Registers CobolAiGui interop services.
         /// Server URL is http://localhost:5000 when the client is on localhost, otherwise https://cobol-ai-studio-d0c7533a4035.herokuapp.com.
         /// </summary>
         public static IServiceCollection AddBlazorLibInterop(this IServiceCollection services)

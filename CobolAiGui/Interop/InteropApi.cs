@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using CobolAiLib;
 using CobolAiLib.constants;
 
-namespace BlazorLib.Interop
+namespace CobolAiGui.Interop
 {
     public interface IInteropApi
     {
