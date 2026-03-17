@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BlazorLib/BlazorLib.csproj" />
+  <Project Path="CobolAiServer/CobolAiServer.csproj" />
+  <Project Path="CobolAiShared/CobolAiShared.shproj" Id="284c2482-664f-43dd-8755-9fda274f166b" />
+  <Project Path="UtilLib/UtilLib.csproj" />
+</Solution>

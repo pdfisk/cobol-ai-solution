@@ -1,5 +1,6 @@
-using Shared;
 using Newtonsoft.Json;
+using UtilLib;
+using UtilLib.constants;
 
 namespace BlazorLib.Interop
 {
@@ -48,7 +49,7 @@ namespace BlazorLib.Interop
 
             try
             {
-                var response = await _httpClient.GetAsync(Constants.CobolEndpoint);
+                var response = await _httpClient.GetAsync(RoutingConstants.CobolEndpoint);
                 response.EnsureSuccessStatusCode();
                 var json = await response.Content.ReadAsStringAsync();
                 var files = JsonConvert.DeserializeObject<List<ScriptFile>>(json);
@@ -76,7 +77,7 @@ namespace BlazorLib.Interop
 
             try
             {
-                var response = await _httpClient.GetAsync(Constants.PythonEndpoint);
+                var response = await _httpClient.GetAsync(RoutingConstants.PythonEndpoint);
                 response.EnsureSuccessStatusCode();
                 var json = await response.Content.ReadAsStringAsync();
                 var files = JsonConvert.DeserializeObject<List<ScriptFile>>(json);
