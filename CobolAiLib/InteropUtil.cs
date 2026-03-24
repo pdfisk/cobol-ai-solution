@@ -8,9 +8,9 @@ namespace CobolAiLib
     {
         static IRunScript? runScript;
 
-        public static Message CreateMessage(string name, params object[] args)
+        public static MessageRecord CreateMessage(string name, params object[] args)
         {
-            return new Message(name, args);
+            return new MessageRecord(name, args);
         }
 
         public static string? CreateEncodedMessageStr64(string name, params object[] args)
@@ -18,12 +18,12 @@ namespace CobolAiLib
             return EncodeMessage64(CreateMessage(name, args));
         }
 
-        public static Message? DecodeMessage64(string messageStr64)
+        public static MessageRecord? DecodeMessage64(string messageStr64)
         {
             try
             {
                 var jsonStr = Base64Util.Decode64(messageStr64);
-                return JsonConvert.DeserializeObject<Message>(jsonStr);
+                return JsonConvert.DeserializeObject<MessageRecord>(jsonStr);
             }
             catch (Exception ex)
             {
@@ -31,7 +31,7 @@ namespace CobolAiLib
             }
         }
 
-        public static string? EncodeMessage64(Message message)
+        public static string? EncodeMessage64(MessageRecord message)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace CobolAiLib
             RunScript(script);
         }
 
-        public static void SendAppMessage(Message message)
+        public static void SendAppMessage(MessageRecord message)
         {
             SendMessage(JavaScriptConstants.SEND_APP_MESSAGE_TEMPLATE, message.Name, message.Args);
         }

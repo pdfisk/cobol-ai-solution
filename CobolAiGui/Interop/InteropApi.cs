@@ -6,8 +6,8 @@ namespace CobolAiGui.Interop
 {
     public interface IInteropApi
     {
-        List<ScriptFile> GetCobolFiles();
-        List<ScriptFile> GetPythonFiles();
+        List<ScriptRecord> GetCobolFiles();
+        List<ScriptRecord> GetPythonFiles();
 
         Task LoadCobolFilesAsync();
         Task LoadPythonFilesAsync();
@@ -19,20 +19,20 @@ namespace CobolAiGui.Interop
         private bool _cobolInitialized;
         private bool _pythonInitialized;
 
-        private List<ScriptFile> CobolFiles { get; } = new();
-        private List<ScriptFile> PythonFiles { get; } = new();
+        private List<ScriptRecord> CobolFiles { get; } = new();
+        private List<ScriptRecord> PythonFiles { get; } = new();
 
         public InteropApi(HttpClient httpClient)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
-        public List<ScriptFile> GetCobolFiles()
+        public List<ScriptRecord> GetCobolFiles()
         {
             return CobolFiles;
         }
 
-        public List<ScriptFile> GetPythonFiles()
+        public List<ScriptRecord> GetPythonFiles()
         {
             return PythonFiles;
         }
@@ -52,7 +52,7 @@ namespace CobolAiGui.Interop
                 var response = await _httpClient.GetAsync(RoutingConstants.CobolEndpoint);
                 response.EnsureSuccessStatusCode();
                 var json = await response.Content.ReadAsStringAsync();
-                var files = JsonConvert.DeserializeObject<List<ScriptFile>>(json);
+                var files = JsonConvert.DeserializeObject<List<ScriptRecord>>(json);
                 if (files != null)
                 {
                     CobolFiles.AddRange(files);
@@ -80,7 +80,7 @@ namespace CobolAiGui.Interop
                 var response = await _httpClient.GetAsync(RoutingConstants.PythonEndpoint);
                 response.EnsureSuccessStatusCode();
                 var json = await response.Content.ReadAsStringAsync();
-                var files = JsonConvert.DeserializeObject<List<ScriptFile>>(json);
+                var files = JsonConvert.DeserializeObject<List<ScriptRecord>>(json);
                 if (files != null)
                 {
                     PythonFiles.AddRange(files);

@@ -1,11 +1,11 @@
 ﻿namespace CobolAiLib
 {
-    public class Message
+    public class MessageRecord
     {
         public string Name;
         public object[] Args;
 
-        public Message(string name, params object[] args)
+        public MessageRecord(string name, params object[] args)
         {
             Name = name;
             Args = args;
