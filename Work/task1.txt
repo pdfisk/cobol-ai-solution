@@ -1,8 +1,0 @@
--- cd to the work folder
--- read the file db.txt
--- create a python program to access a PostgreSQL database using the values in db.txt
--- create a local folder named data
--- read all of cobol_source_files and in the data folder, create a file for each row
----- the file name is the file_name field with a ".cobol" file type
----- the file content is the content field
-
