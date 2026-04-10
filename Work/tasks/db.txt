@@ -1,0 +1,5 @@
+database: cobol_studio
+user: admin
+password: chichi
+table: cobol_source_files
+fields: file_name, content

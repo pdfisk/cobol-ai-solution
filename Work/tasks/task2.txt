@@ -1,0 +1,3 @@
+-- cd to the work/csharp folder
+-- create a csharp scanner program to read Cobol source files from the data folder and produce a stream of tokens that can be input to a parser
+-- include row and column number in each tokens
